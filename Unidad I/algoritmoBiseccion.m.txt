@@ -1,0 +1,46 @@
+clc
+clear
+op='s'
+while op =='s'
+        fprintf('Método de La Bisección\n')
+        f=input('Ingrese una función de x f(x)=','s');
+        fx=inline(f)
+        xa=input('Ingrese el límite inferior xa=');
+        xb=input('Ingrese el límite superior xb=');
+        fa=fx(xa);
+        fb=fx(xb);
+        while fa*fb > 0
+            fprintf('El intervalo no contiene a la raíz\n')    
+            xa=input('Vuelva a ingresar el límite inferior xa=');
+            xb=input('Vuelva a ingresar el límite superior xb=');
+            fa=fx(xa);
+            fb=fx(xb);
+        end
+        itermax=input('Ingrese el número máximo de iteraciones ');
+       emax=input('Ingrese el error máximo deseado ');
+        Vant=0;
+        fprintf('Iter \t\t\t xa \t\t\t xr \t\t\t xb \t\t\t  error\n')
+        er=1;
+        k=1;
+        while itermax >= k && er > emax
+            xr=(xa+xb)/2;
+            er=abs((xr-Vant)/xr);
+            t(k,2)=er;
+            Vant=xr;
+            fprintf('%d\t\t %3.6f\t\t %3.6f\t\t %3.6f\t\t  %3.6f\n', k, xa,xr,xb,er)
+            if (fx(xa)*fx(xr))<0
+                xb=xr;
+            else
+                xa=xr;
+            end
+             t(k,1)=k;
+           k=k+1;
+        end
+        
+        plot(t(:,1),t(:,2),'--r')
+        hold on
+        plot(t(:,1),t(:,2),'*k')
+ fprintf('Desea terminar el programa (s o n)?n')
+ op=input('Elija una opción?','s');
+end
+
