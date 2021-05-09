@@ -1,2 +1,2 @@
-# m-todos-num-ricos
+# metodos-numericos
 Hola espero que te ayude. Saludos!
